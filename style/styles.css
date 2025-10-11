@@ -152,7 +152,7 @@ body {
 .experience-card { 
     background: white; /* Белый фон карточки */ 
     padding: 25px; /* Внутренние отступы */ 
-    margin: white/* Вертикальные отступы */ 
+    margin: white;/* Вертикальные отступы */ 
     border-radius: 12px; /* Скругленные углы */ 
     box-shadow: 0 5px 20px rgba(0,0,0,0.08); /* Легкая тень */ 
     border-left: 4px solid #667eea; /* Синяя полоса слева */ 
