@@ -10,8 +10,8 @@
 
     <body>
         <div class="page-container"> 
-            <div class="header">Главная</div> 
-            <div class="nav">
+            <header class="header"><h1>Главная</h1></header>
+            <nav class="nav">
                 <ul  class="nav-list">
                     <li class="nav-item"><a class="nav-link" href="index.html">Главная</a></li>
                     <li class="nav-item"><a class="nav-link" href="pages/news.html">Новости</a></li>
@@ -19,40 +19,49 @@
                     <li class="nav-item"><a class="nav-link" href="pages/goods.html">Товары</a></li>
                     <li class="nav-item"><a class="nav-link" href="pages/contacts.html">Контакты</a></li>
                 </ul>
-            </div>
-            <div class="content"> 
-                <div class="profile-header"> 
-                    <h1 class="profile-title">Информация об авторе</h1> 
+            </nav>
+            <main class="content">
+                <article class="profile-header">
+                    <h1 class="profile-title">Информация об авторе</h1>
                     <img class="profile-photo" src="images/photo.png" alt="Фото автора"> 
-                    <h2 class="profile-name">Аниканов Николай Александрович</h2> 
+                    <h2 class="profile-name">Аниканов Николай Александрович</h2>
                     <p class="profile-group">ЭФБО-05-2024</p> 
-                </div>
-                <div class="about-me"> 
+                </article>
+
+                <section class="about-me">
+                    <h2>Обо мне</h2>
                     <p>Меня зовут Николай. Я очень дружелюбный и общительный! Любите меня!</p>
-                </div>
-                <div class="skills-container"> 
-                    <div class="skill-tag">Глажу котов</div> 
-                    <div class="skill-tag">Глажу комаров</div> 
-                    <div class="skill-tag">Рыбачу</div> 
-                    <div class="skill-tag">Строю дом</div> 
-                </div> 
-                <div class="experience-section"> 
+                </section>
+
+                <section class="skills-container">
+                    <h2>Мои навыки</h2>
+                    <div class="skills-grid"> 
+                        <div class="skill-tag">Глажка котов</div> 
+                        <div class="skill-tag">Глажка комаров</div> 
+                        <div class="skill-tag">Рыбаловство</div> 
+                        <div class="skill-tag">Строительство дом</div> 
+                    </div> 
+                </section>
+
+                <section class="experience-section">
                     <h2 class="section-title">Мой опыт работы</h2> 
-                    <div class="experience-card"> 
-                        <h3 class="experience-title">Опыт держателя</h3> 
-                        <p class="experience-desc">Держал фонарик 3 минуты подряд!.</p>
+                    <div class="experience-grid">
+                        <article class="experience-card">
+                            <h3 class="experience-title">Опыт держателя</h3> 
+                            <p class="experience-desc">Держал фонарик 3 минуты подряд!.</p>
+                        </article>
+                        <article class="experience-card">
+                            <h3 class="experience-title">Опыт доедателя</h3> 
+                            <p class="experience-desc">Доедал кашу на дне кастрюли, чтоб было проще мыть</p>
+                        </article>
+                        <article class="experience-card">
+                            <h3 class="experience-title">Опыт работодателя</h3> 
+                            <p class="experience-desc">Работал в приемке 2025</p>
+                        </article>
                     </div>
-                    <div class="experience-card"> 
-                        <h3 class="experience-title">Опыт доедателя</h3> 
-                        <p class="experience-desc">Доедал кашу на дне кастрюли, чтоб было проще мыть</p> 
-                    </div>
-                    <div class="experience-card"> 
-                        <h3 class="experience-title">Опыт работодателя</h3> 
-                        <p class="experience-desc">Работал в приемке 2025</p>
-                    </div>
-                </div>
-            </div>
-            <div class="footer">Это мой крутой сайт</div>   
+                </section>
+            </main>
+            <footer class="footer">Это мой крутой сайт</footer>
         </div>
     </body>
 </html>

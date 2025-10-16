@@ -13,11 +13,14 @@ body {
     margin: 0 auto;
     background: white;
     min-height: 100vh;
-    box-shadow: 0 0 30px rgba(0,0,0,0.1);
-    
-    /* Новые свойства для фиксации футера */
-    display: flex;              /* Делаем flex-контейнер */
-    flex-direction: column;     /* Элементы в столбец */ 
+    box-shadow: 0 0 30px rgba(0,0,0,0.1); 
+    display: grid; 
+    grid-template-rows: auto auto 1fr auto; 
+    grid-template-areas:  
+        "header" 
+        "nav" 
+        "main" 
+        "footer";
 }
 
 .header { 
@@ -29,11 +32,15 @@ body {
     font-size: 28px; /* Размер шрифта */ 
     font-weight: 300; /* Легкое начертание шрифта */ 
     letter-spacing: 2px; /* Расстояние между буквами */ 
+    /* Новое: Привязка к области сетки */ 
+    grid-area: header; 
 } 
 
 .nav { 
     background: #2c3e50; /* Темно-синий фон навигации */ 
     padding: 20px 0; /* Вертикальные отступы */ 
+    /* Новое: Привязка к области сетки */ 
+    grid-area: nav; 
 }
 
 .nav-list { 
@@ -63,11 +70,14 @@ body {
     */ 
     transform: translateY(-2px); /* Легкое поднятие элемента при наведении */ 
 } 
+
 /* ===== ОСНОВНОЙ КОНТЕНТ ===== */
-.content { 
-    padding: 40px; /* Внутренние отступы контента */ 
-    max-width: 900px; /* Максимальная ширина контента */ 
-    margin: 0 auto; /* Центрирование контента */ 
+main.content { 
+    padding: 40px; 
+    max-width: 900px;
+    margin: 0 auto; 
+    /* Новое: Привязка к области сетки */ 
+    grid-area: main; 
 } 
 /* ===== ГЛАВНАЯ СТРАНИЦА ===== */
 .profile-header { 
@@ -111,13 +121,13 @@ body {
     line-height: 1.8; /* Межстрочный интервал */
 } 
 
-.skills-container { 
-    display: flex; /* Горизонтальное расположение навыков */ 
-    justify-content: center; /* Выравнивание по центру */ 
-    flex-wrap: wrap; /* Перенос на новую строку при необходимости */ 
-    gap: 15px; /* Расстояние между навыками */ 
-    margin: 30px 0; /* Вертикальные отступы */ 
+.skills-grid { 
+    display: grid; 
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 15px; 
+    margin: 20px 0; 
 } 
+
 
 .skill-tag { 
     background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); /* Голубой 
@@ -129,6 +139,10 @@ body {
     font-size: 14px; /* Размер шрифта */ 
     box-shadow: 0 4px 15px rgba(79, 172, 254, 0.3); /* Тень с голубым оттенком */ 
     transition: all 0.3s ease; /* Плавные анимации при изменении */ 
+    text-align: center;
+    display: flex; /* ДОБАВЛЕНО: Flex для идеального центрирования (если text-align не хватит) */
+    align-items: center; /* Вертикальное центрирование текста */
+    justify-content: center; /* Горизонтальное центрирование текста */
 }
 
 .skill-tag:hover { 
@@ -149,10 +163,16 @@ body {
     font-weight: 300; /* Легкое начертание шрифта */ 
 }
 
+.experience-grid { 
+    display: grid; 
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+    gap: 20px; 
+}
+
 .experience-card { 
     background: white; /* Белый фон карточки */ 
     padding: 25px; /* Внутренние отступы */ 
-    margin: white;/* Вертикальные отступы */ 
+    margin-bottom: 20px;/* Вертикальные отступы */ 
     border-radius: 12px; /* Скругленные углы */ 
     box-shadow: 0 5px 20px rgba(0,0,0,0.08); /* Легкая тень */ 
     border-left: 4px solid #667eea; /* Синяя полоса слева */ 
@@ -182,17 +202,25 @@ body {
     color: white;
     text-align: center;
     padding: 30px;
-    /* margin-top: 50px; — удалите или закомментируйте эту строку */
+    margin-top: 50px;
+    grid-area: footer;
     /* Новое: выталкиваем футер вниз */
-    margin-top: auto;  /* Занимает всё доступное пространство сверху */
+    /*margin-top: auto;  /* Занимает всё доступное пространство сверху */
 }
+
+.news-grid { 
+    display: grid; 
+    grid-template-columns: 1fr; /* Один столбец */
+    gap: 20px; 
+}
+
 .last_news {
     margin-top: 10px;
     color:#4facfe;
     font-size: 40px;
     font-weight: 600;
     text-align: center;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
 }
 
 .experience-title2 { 
@@ -223,13 +251,18 @@ body {
     flex-wrap: wrap; /* Перенос на новую строку при необходимости */ 
     gap: 150px; /* Расстояние между навыками */ 
 } 
+.photo-grid {
+    display: grid; 
+    grid-template-columns: repeat(3, 1fr);
+    gap: 50px; 
+}
 .goods {
     margin-top: 30px;
     color:#4facfe;
     font-size: 40px;
     font-weight: 600;
     text-align: center;
-    margin-bottom: -500px;
+    margin-bottom: -120px;
 }
 .block {
     background: linear-gradient(135deg, #1e5286 0%, #1e5286 100%); /* Голубой 
@@ -252,6 +285,38 @@ body {
     color:rgb(247, 249, 249);
     font-size: 20px; 
 }
+
+ @media (max-width: 768px) { 
+    .nav-list { 
+        flex-direction: column; 
+        gap: 10px; 
+    } 
+    .skills-grid { 
+        grid-template-columns: 1fr; 
+    } 
+    .experience-grid { 
+        grid-template-columns: 1fr; 
+    } 
+    .news-grid {
+        grid-template-columns: 1fr; 
+    }
+    .photo-grid {
+        grid-template-columns: 1fr; 
+    }
+    main.content { 
+        padding: 20px; 
+    } 
+    .photo {
+        width: 100%;
+        height: auto;
+    }
+    .last_news {
+        font-size: 32px; /* Уменьшаем размер шрифта для заголовка новостей */
+    }
+    .experience-title2 {
+        font-size: 32px; /* Уменьшаем размер шрифта для заголовков карточек */
+    }
+} 
 
 .block_contact {
     margin-top: 30px;
