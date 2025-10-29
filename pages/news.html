@@ -8,48 +8,83 @@
     </head>
 
     <body>
-        <div class="page-container"> 
-            <header class="header"><h1>Новости</h1></header>
+        <div class="page"> 
+            <header class="header"><h1 class="header__title">Новости</h1></header>
             <nav class="nav">
-                <ul  class="nav-list">
-                    <li class="nav-item"><a class="nav-link" href="../index.html">Главная</a></li>
-                    <li class="nav-item"><a class="nav-link" href="news.html">Новости</a></li>
-                    <li class="nav-item"><a class="nav-link" href="practies.html">Практики</a></li>
-                    <li class="nav-item"><a class="nav-link" href="goods.html">Товары</a></li>
-                    <li class="nav-item"><a class="nav-link" href="contacts.html">Контакты</a></li>
+                <ul  class="nav__list">
+                    <li class="nav__item"><a class="nav__link" href="../index.html">Главная</a></li>
+                    <li class="nav__item nav__item--active"><a class="nav__link" href="news.html">Новости</a></li>
+                    <li class="nav__item"><a class="nav__link" href="goods.html">Товары</a></li>
+                    <li class="nav__item"><a class="nav__link" href="contacts.html">Контакты</a></li>
+                    <li class="nav__theme-item">
+                        <button id="theme-toggle" class="nav__theme-toggle" aria-label="Переключить тему">
+                            <img src="../images/lun_sun.jpg" alt="Тема" class="nav__theme-img">
+                        </button>
+                    </li>
                 </ul>
             </nav>
-            <main class="content">
-                <div class="last_news">Внимание, новости всех времен!!!</div> 
-                <div class="news-grid">
-                    <div class="experience-card">
-                        <h1 class="experience-title2">Это возмутительно!</h1>
-                        <div class="experience-desc2">
-                            <p>01.09.2025 11:11 K.C Бубкин</p>
-                            <p>Все-таки микроволновка не может сделать молочный коктейль... Но можно попробовать сделать его в тостере!</p> 
+            <main class="main"> 
+                <section class="news">
+                    <div class="news__title">Внимание, новости всех времен!!!</div> 
+                    <section class="news__list">
+                        <div class="news-item">
+                            <div><h1 class="news-item__title">Это возмутительно!</h1></div>
+                            <div><p class="news-item__date">01.09.2025 11:11 K.C Бубкин</p></div>
+                            <div><p class="news-item__text">Все-таки микроволновка не может сделать молочный коктейль... Но можно попробовать сделать его в тостере!</p></div>
+                            <img class="photo" src="../images/mikrovoln.png" alt="Фото мужика с микроволновкой">
                         </div>
-                        <img class="photo" src="../images/mikrovoln.png" alt="Фото мужика с микроволновкой">
-                    </div>
-                    <div class="experience-card">
-                        <h1 class="experience-title2">Пример того, как надо</h1>
-                        <div class="experience-desc2">
-                            <p>01.03.2025 12:11 K.C Пупкин</p>
-                            <p>Сибирский оркестр йети проведет благотворительный концерт для эскимосов</p>
+                        <div class="news-item">
+                            <div><h1 class="news-item__title">Пример того, как надо!</h1></div>
+                            <div><p class="news-item__date">01.03.2025 12:11 K.C Пупкин</p></div>
+                            <div><p class="news-item__text">Сибирский оркестр йети проведет благотворительный концерт для эскимосов</p></div>
+                            <img class="photo" src="../images/yety.png" alt="Я нормальный, честное слово">
                         </div>
-                        <img class="photo" src="../images/yety.png" alt="Я нормальный, честное слово">
-                    </div>
-                    <div class="experience-card">
-                        <h1 class="experience-title2">Срочно, точно и очно!</h1>
-                        <div class="experience-desc2">
-                            <p>02.03.2025 12:11 Л.К Путановна</p>
-                            <p>Отряды вооруженных бобров массово врываются на территории городов</p>
+                        <div class="news-item">
+                            <div><h1 class="news-item__title">Срочно, точно и очно!</h1></div>
+                            <div><p class="news-item__date">02.03.2025 12:11 Л.К Путановна</p></div>
+                            <div><p class="news-item__text">Отряды вооруженных бобров массово врываются на территории городов</p></div>
+                            <img class="photo" src="../images/Bobr.png" alt="Добрый вечер и хорошего настроения">
                         </div>
-                        <img class="photo" src="../images/Bobr.png" alt="Добрый вечер и хорошего настроения">
-                    </div>
-                </div>
+                    </section>
+                </section>
             </main>
-            <footer class="footer">Это мой крутой сайт</footer>
+            <footer class="footer">
+                <p class="footer__text">&copy; 2025 Мой сайт</p>
+            </footer>
         </div>
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                const themeToggle = document.getElementById('theme-toggle');
+                const body = document.body;
+                const page = document.querySelector('.page');
+
+                // Загружаем сохранённую тему
+                const savedTheme = localStorage.getItem('page-theme') || 'light';
+                applyTheme(savedTheme);
+
+                // Клик по картинке
+                themeToggle.addEventListener('click', function () {
+                    const isDark = body.classList.contains('theme-dark');
+                    const newTheme = isDark ? 'light' : 'dark';
+                    applyTheme(newTheme);
+                    localStorage.setItem('page-theme', newTheme);
+                });
+
+                function applyTheme(theme) {
+                    if (theme === 'dark') {
+                        body.classList.remove('theme-light');
+                        body.classList.add('theme-dark');
+                        page.classList.remove('theme-light');
+                        page.classList.add('theme-dark');
+                    } else {
+                        body.classList.remove('theme-dark');
+                        body.classList.add('theme-light');
+                        page.classList.remove('theme-dark');
+                        page.classList.add('theme-light');
+                    }
+                }
+            });
+        </script>
     </body>
 </html>
 
