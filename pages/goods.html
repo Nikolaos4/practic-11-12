@@ -1,95 +1,232 @@
 <!DOCTYPE html>
 <html lang="ru">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Новости</title>
-        <link rel="stylesheet" href="../style/styles.css">
-    </head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Товары - Портфолио</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <style>
+        /* Flex для фиксации футера внизу */
+        html, body {
+            height: 100%;
+        }
+        .page-wrapper {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        main {
+            flex: 1;
+        }
 
-    <body>
-        <div class="page"> 
-            <header class="header"><h1 class="header__title">Новости</h1></header>
-            <nav class="nav">
-                <ul  class="nav__list">
-                    <li class="nav__item"><a class="nav__link" href="../index.html">Главная</a></li>
-                    <li class="nav__item"><a class="nav__link" href="news.html">Новости</a></li>
-                    <li class="nav__item nav__item--active"><a class="nav__link" href="goods.html">Товары</a></li>
-                    <li class="nav__item"><a class="nav__link" href="contacts.html">Контакты</a></li>
-                    <li class="nav__theme-item">
-                        <button id="theme-toggle" class="nav__theme-toggle" aria-label="Переключить тему">
-                            <img src="../images/lun_sun.jpg" alt="Тема" class="nav__theme-img">
-                        </button>
-                    </li>
-                </ul>
-            </nav>
-            <main class="main"> 
-                <section class="goods">
-                    <div class="goods__title">А вот  и товары для того, чтобы ты изменил свою жизнь:</div>
-                    <section class="goods__list">
-                        <div class="goods-item">
-                            <img class="goods-item__photo" src="../images/goods1.jpg" alt="Фото товара">
-                            <p class="goods-item__title">Эспандер для сачков</p>
-                            <p class="goods-item__cost">Цена - 1000000 рублей</p>
-                        </div>
-                        <div class="goods-item">
-                            <img class="goods-item__photo" src="../images/goods2.png" alt="Фото товара" >
-                            <p class="goods-item__title">Гантели для рачков</p>
-                            <p class="goods-item__cost">Цена - 400000 рублей</p>
-                        </div>
-                        <div class="goods-item">
-                            <img class="goods-item__photo" src="../images/goods3.png" alt="Фото товара" >
-                            <p class="goods-item__title">Гейнер для качков</p>
-                            <p class="goods-item__cost">Цена - <s>6400000 рублей</s></p>
-                            <p class="goods-item__cost_sale">6300000 рублей!!!</p>
+        /* Карточки товаров */
+        .goods-item {
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            background-color: #e3f2fd !important; /* голубой фон */
+        }
+        .goods-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.18) !important;
+        }
+        .theme-dark .goods-item {
+            background-color: #0d47a1 !important; /* тёмно-голубой в тёмной теме */
+            color: #fff !important;
+        }
+        .goods-item.selected {
+            border-color: #ffc107 !important;
+            box-shadow: 0 0 0 4px rgba(255, 193, 7, 0.3), 0 12px 30px rgba(255, 193, 7, 0.4) !important;
+            transform: scale(1.03);
+        }
 
+        /* Фото товаров — ПОЛНЫЕ, не обрезанные */
+        .goods-item .card-img-top {
+            height: 280px;
+            object-fit: contain !important;
+            background-color: #f8f9fa;
+            padding: 20px;
+        }
+
+        /* Цена БЛИЗКО к названию */
+        .goods-item .card-body {
+            padding-bottom: 1.25rem;
+        }
+        .goods-item .card-title {
+            margin-bottom: 0.5rem;
+        }
+        .goods-item .card-text {
+            margin-bottom: 0;
+        }
+
+        /* Скидка */
+        .price-sale del {
+            color: #6c757d !important;
+            font-size: 0.95rem;
+        }
+        .text-sale {
+            color: #dc3545 !important;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        /* Мобильное меню */
+        @media (max-width: 991.98px) {
+            .navbar-collapse {
+                background-color: #212529;
+                margin-top: 10px;
+                padding: 20px;
+                border-radius: 0 0 15px 15px;
+            }
+            .navbar-nav .nav-link {
+                padding: 12px 20px !important;
+                border-bottom: 1px solid rgba(255,255,255,0.1);
+            }
+            .navbar-nav .nav-link:last-child {
+                border-bottom: none;
+            }
+        }
+    </style>
+</head>
+<body class="bg-light">
+    <div class="page-wrapper">
+
+        <!-- Header -->
+        <header class="bg-primary text-white py-4">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col">
+                        <h1 class="h3 mb-1">Товары, которые я предлагаю</h1>
+                        <p class="mb-0 opacity-75">P.s: таких вы нигде больше не найдёте</p>
+                    </div>
+                    <div class="col-auto">
+                        <span class="badge bg-light text-primary">Одобрено НИИ стоматологией</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Navigation — ГАМБУРГЕР СЛЕВА -->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container">
+                <!-- Гамбургер слева (как на главной) -->
+                <button class="navbar-toggler me-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="../index.html">
+                                <i class="bi bi-house me-1"></i>Главная
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="news.html">
+                                <i class="bi bi-newspaper me-1"></i>Новости
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="goods.html">
+                                <i class="bi bi-cart me-1"></i>Товары
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="contacts.html">
+                                <i class="bi bi-telephone me-1"></i>Контакты
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="container my-5 flex-grow-1">
+            <section class="mb-5">
+                <!-- УБРАН ЗНАЧОК ПОДАРКА -->
+                <h2 class="text-center mb-5 text-primary fs-3">
+                    А вот и товары для того, чтобы ты изменил свою жизнь:
+                </h2>
+
+                <div class="row row-cols-1 row-cols-md-3 g-4">
+                    <!-- Товар 1 -->
+                    <div class="col">
+                        <div class="card h-100 goods-item shadow-sm">
+                            <img src="../images/goods1.jpg" class="card-img-top" alt="Эспандер для сачков">
+                            <div class="card-body">
+                                <h5 class="card-title">Эспандер для сачков</h5>
+                                <p class="card-text">
+                                    <strong>1 000 000 ₽</strong>
+                                </p>
+                            </div>
                         </div>
-                    </section>
-                </section>
-            </main>
-            <footer class="footer">
-                <p class="footer__text">&copy; 2025 Мой сайт</p>
-            </footer> 
-        </div>
-        <script>
-            document.addEventListener('DOMContentLoaded', function () {
-                document.querySelectorAll('.goods-item').forEach(item => {
-                    item.addEventListener('click', function () {
-                        this.classList.toggle('goods-item--selected');
-                    });
+                    </div>
+
+                    <!-- Товар 2 -->
+                    <div class="col">
+                        <div class="card h-100 goods-item shadow-sm">
+                            <img src="../images/goods2.png" class="card-img-top" alt="Гантели для рачков">
+                            <div class="card-body">
+                                <h5 class="card-title">Гантели для рачков</h5>
+                                <p class="card-text">
+                                    <strong>400 000 ₽</strong>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Товар 3 (скидка) -->
+                    <div class="col">
+                        <div class="card h-100 goods-item shadow-sm">
+                            <img src="../images/goods3.png" class="card-img-top" alt="Гейнер для качков">
+                            <div class="card-body">
+                                <h5 class="card-title">Гейнер для качков</h5>
+                                <div class="price-sale">
+                                    <p class="card-text mb-1">
+                                        <del>6 400 000 ₽</del>
+                                    </p>
+                                    <p class="card-text text-sale">
+                                        <strong>6 300 000 ₽</strong>
+                                        <span class="badge bg-danger ms-2">СКИДКА!</span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer — В САМОМ НИЗУ -->
+        <footer class="bg-dark text-white py-4 mt-auto">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-md-6">
+                        <p class="mb-0">&copy; 2025 Мой сайт. Все права защищены.</p>
+                    </div>
+                    <div class="col-md-6 text-md-end">
+                        <a href="contacts.html" class="text-white text-decoration-none me-3">Контакты</a>
+                        <a href="#" class="text-white text-decoration-none">Политика конфиденциальности</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Выделение товаров по клику -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            document.querySelectorAll('.goods-item').forEach(item => {
+                item.addEventListener('click', function () {
+                    this.classList.toggle('selected');
                 });
             });
-            document.addEventListener('DOMContentLoaded', function () {
-                const themeToggle = document.getElementById('theme-toggle');
-                const body = document.body;
-                const page = document.querySelector('.page');
-
-                // Загружаем сохранённую тему
-                const savedTheme = localStorage.getItem('page-theme') || 'light';
-                applyTheme(savedTheme);
-
-                // Клик по картинке
-                themeToggle.addEventListener('click', function () {
-                    const isDark = body.classList.contains('theme-dark');
-                    const newTheme = isDark ? 'light' : 'dark';
-                    applyTheme(newTheme);
-                    localStorage.setItem('page-theme', newTheme);
-                });
-
-                function applyTheme(theme) {
-                    if (theme === 'dark') {
-                        body.classList.remove('theme-light');
-                        body.classList.add('theme-dark');
-                        page.classList.remove('theme-light');
-                        page.classList.add('theme-dark');
-                    } else {
-                        body.classList.remove('theme-dark');
-                        body.classList.add('theme-light');
-                        page.classList.remove('theme-dark');
-                        page.classList.add('theme-light');
-                    }
-                }
-            });
-        </script>
-    </body>
+        });
+    </script>
+</body>
 </html>

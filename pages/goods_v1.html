@@ -13,8 +13,8 @@
             <nav class="nav">
                 <ul  class="nav__list">
                     <li class="nav__item"><a class="nav__link" href="../index_v1.html">Главная</a></li>
-                    <li class="nav__item nav__item--active"><a class="nav__link" href="news.html">Новости</a></li>
-                    <li class="nav__item"><a class="nav__link" href="goods_v1.html">Товары</a></li>
+                    <li class="nav__item"><a class="nav__link" href="news.html">Новости</a></li>
+                    <li class="nav__item nav__item--active"><a class="nav__link" href="goods_v1.html">Товары</a></li>
                     <li class="nav__item"><a class="nav__link" href="contacts.html">Контакты</a></li>
                     <li class="nav__theme-item">
                         <button id="theme-toggle" class="nav__theme-toggle" aria-label="Переключить тему">
@@ -24,35 +24,41 @@
                 </ul>
             </nav>
             <main class="main"> 
-                <section class="news">
-                    <div class="news__title">Внимание, новости всех времен!!!</div> 
-                    <section class="news__list">
-                        <div class="news-item">
-                            <div><h1 class="news-item__title">Это возмутительно!</h1></div>
-                            <div><p class="news-item__date">01.09.2025 11:11 K.C Бубкин</p></div>
-                            <div><p class="news-item__text">Все-таки микроволновка не может сделать молочный коктейль... Но можно попробовать сделать его в тостере!</p></div>
-                            <img class="photo" src="../images/mikrovoln.png" alt="Фото мужика с микроволновкой">
+                <section class="goods">
+                    <div class="goods__title">А вот  и товары для того, чтобы ты изменил свою жизнь:</div>
+                    <section class="goods__list">
+                        <div class="goods-item">
+                            <img class="goods-item__photo" src="../images/goods1.jpg" alt="Фото товара">
+                            <p class="goods-item__title">Эспандер для сачков</p>
+                            <p class="goods-item__cost">Цена - 1000000 рублей</p>
                         </div>
-                        <div class="news-item">
-                            <div><h1 class="news-item__title">Пример того, как надо!</h1></div>
-                            <div><p class="news-item__date">01.03.2025 12:11 K.C Пупкин</p></div>
-                            <div><p class="news-item__text">Сибирский оркестр йети проведет благотворительный концерт для эскимосов</p></div>
-                            <img class="photo" src="../images/yety.png" alt="Я нормальный, честное слово">
+                        <div class="goods-item">
+                            <img class="goods-item__photo" src="../images/goods2.png" alt="Фото товара" >
+                            <p class="goods-item__title">Гантели для рачков</p>
+                            <p class="goods-item__cost">Цена - 400000 рублей</p>
                         </div>
-                        <div class="news-item">
-                            <div><h1 class="news-item__title">Срочно, точно и очно!</h1></div>
-                            <div><p class="news-item__date">02.03.2025 12:11 Л.К Путановна</p></div>
-                            <div><p class="news-item__text">Отряды вооруженных бобров массово врываются на территории городов</p></div>
-                            <img class="photo" src="../images/Bobr.png" alt="Добрый вечер и хорошего настроения">
+                        <div class="goods-item">
+                            <img class="goods-item__photo" src="../images/goods3.png" alt="Фото товара" >
+                            <p class="goods-item__title">Гейнер для качков</p>
+                            <p class="goods-item__cost">Цена - <s>6400000 рублей</s></p>
+                            <p class="goods-item__cost_sale">6300000 рублей!!!</p>
+
                         </div>
                     </section>
                 </section>
             </main>
             <footer class="footer">
                 <p class="footer__text">&copy; 2025 Мой сайт</p>
-            </footer>
+            </footer> 
         </div>
         <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                document.querySelectorAll('.goods-item').forEach(item => {
+                    item.addEventListener('click', function () {
+                        this.classList.toggle('goods-item--selected');
+                    });
+                });
+            });
             document.addEventListener('DOMContentLoaded', function () {
                 const themeToggle = document.getElementById('theme-toggle');
                 const body = document.body;
@@ -87,7 +93,3 @@
         </script>
     </body>
 </html>
-
-
-
- 
